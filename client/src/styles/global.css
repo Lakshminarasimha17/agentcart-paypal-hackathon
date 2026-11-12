@@ -1,0 +1,877 @@
+/* ==========================================================================
+   AgentCart - PayPal-Inspired Modern Light Fintech UI
+   ========================================================================== */
+
+:root {
+  --bg-main: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F8FAFC;
+  
+  /* PayPal Brand Colors */
+  --paypal-navy: #003087;
+  --paypal-navy-dark: #001C48;
+  --paypal-blue: #0070E0;
+  --paypal-blue-hover: #005EA6;
+  --paypal-blue-light: #EFF6FF;
+  --paypal-teal: #00CFBE;
+  --paypal-gold: #FFC439;
+  
+  /* Neutrals & Text */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+  
+  /* Borders & Shadows */
+  --border-subtle: #E2E8F0;
+  --border-focus: #0070E0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 16px -1px rgba(0, 48, 135, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 10px 24px -2px rgba(0, 48, 135, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-modal: 0 20px 40px -4px rgba(0, 48, 135, 0.22);
+  
+  /* States */
+  --success: #059669;
+  --success-bg: #ECFDF5;
+  --success-border: #A7F3D0;
+  --error: #DC2626;
+  --error-bg: #FEF2F2;
+  --error-border: #FECACA;
+  --listening-red: #EF4444;
+  --listening-red-dark: #DC2626;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Header / Navbar (Deep PayPal Navy)
+   -------------------------------------------------------------------------- */
+.navbar {
+  background: linear-gradient(135deg, var(--paypal-navy-dark) 0%, var(--paypal-navy) 100%);
+  color: var(--text-inverse);
+  box-shadow: 0 2px 8px rgba(0, 28, 72, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0070E0 0%, #00457C 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 112, 224, 0.4);
+}
+
+.brand-icon-p1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  position: absolute;
+  left: 10px;
+  top: 4px;
+}
+
+.brand-icon-p2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #00CFBE;
+  position: absolute;
+  left: 18px;
+  top: 8px;
+  opacity: 0.9;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #FFFFFF;
+}
+
+.badge-hackathon {
+  background: rgba(0, 207, 190, 0.18);
+  color: #00CFBE;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 207, 190, 0.35);
+  letter-spacing: 0.2px;
+}
+
+.brand-tagline {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 1px;
+}
+
+.navbar-status {
+  display: flex;
+  align-items: center;
+}
+
+.sandbox-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sandbox-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00CFBE;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00CFBE;
+}
+
+/* --------------------------------------------------------------------------
+   Main Content Layout
+   -------------------------------------------------------------------------- */
+.main-content {
+  flex: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.2rem 1.5rem 4rem;
+}
+
+.hero-banner {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 1.8rem;
+}
+
+.hero-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--paypal-navy);
+  letter-spacing: -0.8px;
+  margin-bottom: 0.45rem;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Chat Bar & Input Card
+   -------------------------------------------------------------------------- */
+.chat-bar {
+  max-width: 860px;
+  margin: 0 auto 2.2rem;
+}
+
+.input-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  padding: 0.5rem 0.6rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.input-card:focus-within {
+  border-color: var(--paypal-blue);
+  box-shadow: 0 0 0 3px rgba(0, 112, 224, 0.15), var(--shadow-card);
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-icon-wrapper {
+  padding-left: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.02rem;
+  color: var(--text-primary);
+  padding: 0.65rem 0.5rem;
+  font-family: inherit;
+}
+
+.chat-input::placeholder {
+  color: var(--text-muted);
+}
+
+.chat-input:disabled {
+  opacity: 0.6;
+}
+
+/* Voice Search Microphone Button */
+.mic-btn {
+  background: #F1F5F9;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 12px;
+  padding: 0.65rem 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  height: 44px;
+}
+
+.mic-btn:hover:not(:disabled):not(.listening) {
+  background: #E2E8F0;
+  color: var(--paypal-blue);
+  border-color: #CBD5E1;
+}
+
+/* Pulsing Red Listening Mode */
+.mic-btn.listening {
+  background: var(--listening-red);
+  color: #FFFFFF;
+  border-color: var(--listening-red-dark);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+  animation: pulse-listening 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-listening {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.pulse-indicator {
+  width: 9px;
+  height: 9px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+.mic-listening-label {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Vibrant Blue Search Button */
+.send-btn {
+  background: var(--paypal-blue);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 112, 224, 0.25);
+}
+
+.send-btn:hover:not(:disabled) {
+  background: var(--paypal-blue-hover);
+  box-shadow: 0 4px 10px rgba(0, 112, 224, 0.35);
+  transform: translateY(-1px);
+}
+
+.send-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.send-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #FFFFFF;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+/* Chips / Popular Searches */
+.chips-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.chips-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--paypal-navy);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.chip:hover:not(:disabled) {
+  background: var(--paypal-blue-light);
+  border-color: var(--paypal-blue);
+  color: var(--paypal-blue);
+  transform: translateY(-1px);
+}
+
+.chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading Card */
+.loading-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.1rem 1.4rem;
+  margin-top: 1.2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #E2E8F0;
+  border-top-color: var(--paypal-blue);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-text strong {
+  color: var(--paypal-navy);
+  font-size: 0.92rem;
+}
+
+.loading-text span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Summary Panel (White Elevated Card with PayPal Blue Accent)
+   -------------------------------------------------------------------------- */
+.summary-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--paypal-blue);
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  margin: 0 auto 2.2rem;
+  max-width: 860px;
+  box-shadow: var(--shadow-card);
+}
+
+.summary-header {
+  margin-bottom: 0.65rem;
+}
+
+.summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--paypal-blue-light);
+  color: var(--paypal-blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.ai-sparkle-icon {
+  color: var(--paypal-blue);
+}
+
+.summary-text {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+}
+
+/* --------------------------------------------------------------------------
+   Product Grid & AG Grid Quartz Theme Adjustments
+   -------------------------------------------------------------------------- */
+.product-section {
+  margin-bottom: 3.5rem;
+}
+
+.product-section-header {
+  margin-bottom: 1.1rem;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--paypal-navy);
+  letter-spacing: -0.4px;
+}
+
+.section-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.grid-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
+}
+
+/* AG Grid Quartz Light Customizations */
+.ag-theme-quartz {
+  --ag-font-family: inherit;
+  --ag-font-size: 14px;
+  --ag-background-color: #FFFFFF;
+  --ag-header-background-color: #F8FAFC;
+  --ag-header-foreground-color: var(--paypal-navy);
+  --ag-foreground-color: var(--text-primary);
+  --ag-border-color: #E2E8F0;
+  --ag-row-hover-color: #F1F5F9;
+  --ag-selected-row-background-color: #EFF6FF;
+}
+
+.ag-theme-quartz .ag-header-cell-text {
+  font-weight: 700;
+  color: var(--paypal-navy);
+  letter-spacing: -0.2px;
+}
+
+/* Product Thumbnail Cell */
+.product-thumb-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.product-thumb-img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  padding: 3px;
+  border: 1px solid #E2E8F0;
+}
+
+.product-thumb-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  height: 100%;
+}
+
+/* Product Title Cell */
+.product-title-cell {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 4px 0;
+}
+
+.product-title-link {
+  color: var(--paypal-navy);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.94rem;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.product-title-link:hover {
+  color: var(--paypal-blue);
+  text-decoration: underline;
+}
+
+/* Price Cell Text */
+.price-cell-text {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0F172A !important;
+}
+
+/* PayPal Button Cell Wrapper */
+.paypal-btn-cell-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 175px;
+  margin: 0 auto;
+  padding: 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Empty State & Error State
+   -------------------------------------------------------------------------- */
+.empty-state-card {
+  background: var(--bg-card);
+  border: 1px dashed #CBD5E1;
+  border-radius: 16px;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  max-width: 650px;
+  margin: 1.5rem auto;
+}
+
+.empty-state-illustration {
+  margin-bottom: 1.2rem;
+}
+
+.empty-state-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--paypal-navy);
+  margin-bottom: 0.4rem;
+}
+
+.empty-state-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.error-card {
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 12px;
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 860px;
+  margin: 0 auto 1.5rem;
+}
+
+.error-icon {
+  font-size: 1.4rem;
+}
+
+.error-body strong {
+  display: block;
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.error-body p {
+  color: #991B1B;
+  font-size: 0.85rem;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   Receipt Banner (Fintech Floating Receipt Card)
+   -------------------------------------------------------------------------- */
+.receipt-banner-overlay {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  animation: slide-up 0.35s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.receipt-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
+  width: 420px;
+  box-shadow: var(--shadow-modal);
+  border: 1px solid #E2E8F0;
+  border-top: 4px solid var(--success);
+}
+
+.receipt-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.receipt-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--success-bg);
+  color: var(--success);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--success-border);
+}
+
+.success-check-icon {
+  font-weight: 900;
+}
+
+.receipt-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 6px;
+  transition: color 0.15s;
+}
+
+.receipt-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.receipt-main-info {
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.receipt-amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+}
+
+.receipt-amount-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.receipt-amount-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--paypal-navy);
+}
+
+.receipt-currency {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.receipt-product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.receipt-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.2rem;
+}
+
+.receipt-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.receipt-meta-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.receipt-meta-code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: #F1F5F9;
+  color: var(--paypal-navy);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  border: 1px solid #E2E8F0;
+}
+
+.receipt-footer {
+  text-align: right;
+}
+
+.receipt-action-btn {
+  background: var(--paypal-blue);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.receipt-action-btn:hover {
+  background: var(--paypal-blue-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 1.8rem 1rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .receipt-banner-overlay {
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  .receipt-card {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+}
