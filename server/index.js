@@ -30,7 +30,7 @@ const PORT = parseInt(process.env.PORT || '5000', 10);
 // ─── Express Setup ────────────────────────────────────────────────────────────
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors());
 app.use(express.json());
 
 // ─── Gemini Client ────────────────────────────────────────────────────────────

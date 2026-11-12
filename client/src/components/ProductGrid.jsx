@@ -51,8 +51,10 @@ function TitleCellRenderer({ data }) {
 function PayPalCellRenderer({ data, onReceipt, apiUrl }) {
   if (!data) return null
 
+  const resolvedApiUrl = apiUrl || import.meta.env.VITE_API_URL || 'https://agentcart-paypal-hackathon.onrender.com'
+
   const createOrder = useCallback(async () => {
-    const res = await fetch(`${apiUrl}/api/create-order`, {
+    const res = await fetch(`${resolvedApiUrl}/api/create-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ productId: data.id }),
@@ -60,10 +62,10 @@ function PayPalCellRenderer({ data, onReceipt, apiUrl }) {
     const json = await res.json()
     if (!res.ok) throw new Error(json.error || 'Order creation failed')
     return json.orderID
-  }, [data.id, apiUrl])
+  }, [data.id, resolvedApiUrl])
 
   const onApprove = useCallback(async (approveData) => {
-    const res = await fetch(`${apiUrl}/api/capture-order`, {
+    const res = await fetch(`${resolvedApiUrl}/api/capture-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ orderID: approveData.orderID }),
@@ -75,7 +77,7 @@ function PayPalCellRenderer({ data, onReceipt, apiUrl }) {
       captureID: capture.captureID,
       orderID: capture.orderID,
     })
-  }, [data, apiUrl, onReceipt])
+  }, [data, resolvedApiUrl, onReceipt])
 
   const onError = useCallback((err) => {
     console.error('PayPal error:', err)
