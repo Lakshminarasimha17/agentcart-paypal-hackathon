@@ -51,7 +51,7 @@ function TitleCellRenderer({ data }) {
 function PayPalCellRenderer({ data, onReceipt, apiUrl }) {
   if (!data) return null
 
-  const resolvedApiUrl = apiUrl || import.meta.env.VITE_API_URL || 'https://agentcart-paypal-hackathon.onrender.com'
+  const resolvedApiUrl = 'https://agentcart-paypal-hackathon.onrender.com'
 
   const createOrder = useCallback(async () => {
     const res = await fetch(`${resolvedApiUrl}/api/create-order`, {

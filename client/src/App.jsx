@@ -4,7 +4,7 @@ import SummaryPanel from './components/SummaryPanel'
 import ProductGrid from './components/ProductGrid'
 import ReceiptBanner from './components/ReceiptBanner'
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://agentcart-paypal-hackathon.onrender.com'
+const API_URL = 'https://agentcart-paypal-hackathon.onrender.com'
 
 const CHIPS = [
   'Find 4K monitors under $300',
